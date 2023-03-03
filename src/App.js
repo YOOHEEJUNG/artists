@@ -1,24 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route, Routes } from 'react-router-dom';
+import Header from './artist/Header';
+import ArtistHome from './artist/ArtistHome';
+
+import ArtistDetail from './artist/ArtistDetail';
+import ArtistDetailAbout from './artist/ArtistDetailAbout';
+import ArtistDetailAlbum from './artist/ArtistDetailAlbum';
+import ArtistDetailSchedule from './artist/ArtistDetailSchedule';
+import ArtistList from './artist/ArtistList';
+import ArtistDetailAlbum_content from './artist/ArtistDetailAlbum_content';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  
+    <Routes>
+      <Route element={<Header/>}>
+
+          <Route path='/artist' element={<ArtistHome/>}>
+            
+            <Route path='/artist/artistList' element={<ArtistList/>}></Route>
+            
+            <Route path='/artist/artistDetail' element={<ArtistDetail/>}>
+              <Route path='/artist/artistDetail/about' element={<ArtistDetailAbout/>}></Route>
+
+              <Route path='/artist/artistDetail/album' element={<ArtistDetailAlbum/>}>
+                <Route path='/artist/artistDetail/album/content' element={<ArtistDetailAlbum_content/>}></Route>
+              </Route>
+
+              <Route path='/artist/artistDetail/schedule' element={<ArtistDetailSchedule/>}></Route>
+            </Route>
+
+          </Route>
+
+            
+
+      </Route>
+        
+    </Routes>
+
   );
 }
 
